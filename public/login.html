@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Auth</title>
+    <link rel="stylesheet" href="/assests/styles.css" type="text/css">
+</head>
+
+<body class="container">
+    <div class="login-container">
+        <div class="login">
+            <h1>User Auth</h1>
+            <form method="post" class="login-form">
+                <div class="form-input">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username">
+                </div>
+                <div class="form-input">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div class="form-input">
+                    <input type="submit" value="Login" id="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const login = async (username, password) => {
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password }),
+                redirect: "follow",
+            });
+            if (response.redirected) {
+                const finalUrl = response.url;
+                console.log("Redirected to:", finalUrl);
+                window.location.href = finalUrl;
+            }
+
+            // if response status is 401 alert the user that the password is wrong
+            if (response.status == 401) {
+                alert("Password Incorrect");
+            }
+        };
+
+        document.querySelector("#submit").addEventListener("click", function (e) {
+            e.preventDefault();
+            const username = document.querySelector("#username").value;
+            const pasword = document.querySelector("#password").value;
+            login(username, pasword);
+        });
+    </script>
+</body>
+
+</html>
