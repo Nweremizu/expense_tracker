@@ -39,8 +39,6 @@ const add_expense = async (name, amount, category) => {
 	});
 };
 
-co;
-
 const expense_btn = document.querySelector("#expense-btn");
 expense_btn.addEventListener("click", function (e) {
 	e.preventDefault();
