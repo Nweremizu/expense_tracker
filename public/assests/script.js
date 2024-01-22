@@ -30,14 +30,18 @@ document.querySelector("#income-btn").addEventListener("click", function (e) {
 });
 
 const add_expense = async (name, amount, category) => {
-	await fetch("/new-expense", {
-		method: "POST",
-		mode: "no-cors",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ name, amount, category }),
-	});
+	try {
+		await fetch("/new-expense", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ name, amount, category }),
+		});
+		console.log("Expense added successfully!");
+	} catch (error) {
+		console.error("Error adding expense:", error);
+	}
 };
 
 const expense_btn = document.querySelector("#expense-btn");
@@ -48,6 +52,7 @@ expense_btn.addEventListener("click", function (e) {
 	const amount = document.querySelector("#amount").value;
 
 	add_expense(name, amount, category);
+
 	document.querySelector("#expense-name").value = "";
 	document.querySelector("#amount").value = "";
 	// reload the page
