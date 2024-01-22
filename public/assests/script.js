@@ -30,7 +30,7 @@ document.querySelector("#income-btn").addEventListener("click", function (e) {
 });
 
 const add_expense = async (name, amount, category) => {
-	const response = await fetch("/new-expense", {
+	await fetch("/new-expense", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -49,5 +49,4 @@ expense_btn.addEventListener("click", function (e) {
 	document.querySelector("#expense-name").value = "";
 	document.querySelector("#amount").value = "";
 	// reload the page
-	location.reload();
 });
