@@ -10,7 +10,6 @@ get_username();
 const update_income = async (income) => {
 	const response = await fetch("/new-income", {
 		method: "PUT",
-		mode: "no-cors",
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -33,6 +32,7 @@ document.querySelector("#income-btn").addEventListener("click", function (e) {
 const add_expense = async (name, amount, category) => {
 	await fetch("/new-expense", {
 		method: "POST",
+		mode: "no-cors",
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -42,7 +42,7 @@ const add_expense = async (name, amount, category) => {
 
 const expense_btn = document.querySelector("#expense-btn");
 expense_btn.addEventListener("click", function (e) {
-	e.preventDefault(s);
+	e.preventDefault();
 	const name = document.querySelector("#expense-name").value;
 	const category = document.querySelector("#category").value;
 	const amount = document.querySelector("#amount").value;
