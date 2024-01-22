@@ -31,15 +31,19 @@ document.querySelector("#income-btn").addEventListener("click", function (e) {
 
 const add_expense = async (name, amount, category) => {
 	try {
-		await fetch("/new-expense", {
+		const response = await fetch("/new-expense", {
 			method: "POST",
-			mode: "no-cors",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({ name, amount, category }),
+			redirect: "follow",
 		});
-		console.log("Expense added successfully!");
+		if (response.redirected) {
+			const finalUrl = response.url;
+			console.log("Redirected to:", finalUrl);
+			window.location.href = finalUrl;
+		}
 	} catch (error) {
 		console.error("Error adding expense:", error);
 	}

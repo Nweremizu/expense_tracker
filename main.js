@@ -106,6 +106,7 @@ app.put("/new-income", async (req, res) => {
 
 app.post("/new-expense", async (req, res) => {
 	const { name, amount, category } = req.body;
+	console.log(req.body);
 	const userId = req.session.user._id;
 	try {
 		const newEXp = new Expense({
@@ -115,6 +116,7 @@ app.post("/new-expense", async (req, res) => {
 			userId,
 		});
 		await newEXp.save();
+		res.redirect(`/expense/${req.session.user.username}`);
 	} catch (err) {
 		console.log(err);
 		res.status(500).json({ error: "Error Adding Expenses" });
