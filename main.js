@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(
 	session({
 		secret: "csc-310",
-		resave: false,
+		resave: true,
 		saveUninitialized: true,
 	})
 );
