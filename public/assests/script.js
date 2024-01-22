@@ -41,7 +41,6 @@ const add_expense = async (name, amount, category) => {
 
 const expense_btn = document.querySelector("#expense-btn");
 expense_btn.addEventListener("click", function (e) {
-	e.preventDefault();
 	const name = document.querySelector("#expense-name").value;
 	const category = document.querySelector("#category").value;
 	const amount = document.querySelector("#amount").value;
