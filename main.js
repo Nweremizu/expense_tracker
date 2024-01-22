@@ -5,9 +5,11 @@ const path = require("path");
 const PORT = 3000;
 const session = require("express-session");
 const chart = require("chart.js");
+const cors = require("cors");
 
 const app = express();
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(
