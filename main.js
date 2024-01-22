@@ -17,6 +17,12 @@ app.use(
 		saveUninitialized: true,
 	})
 );
+app.use((req, res, next) => {
+	res.setHeader("Access-Control-Allow-Origin", "*"); // Adjust to your specific needs
+	res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+	next();
+});
 
 mongoose.connect(
 	"mongodb+srv://admin:admin@feed.5uf8avf.mongodb.net/expense?retryWrites=true&w=majority"

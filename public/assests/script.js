@@ -33,6 +33,7 @@ const add_expense = async (name, amount, category) => {
 	try {
 		await fetch("/new-expense", {
 			method: "POST",
+			mode: "no-cors",
 			headers: {
 				"Content-Type": "application/json",
 			},
