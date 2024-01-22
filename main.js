@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const PORT = 3000;
 const session = require("express-session");
+const chart = require("chart.js");
 
 const app = express();
 
